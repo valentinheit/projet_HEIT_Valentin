@@ -74,7 +74,7 @@ class Client
     /**
      * @var int|null
      *
-     * @ORM\Column(name="telephone", type="int", nullable=true)
+     * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     private $telephone;
 
@@ -236,27 +236,13 @@ class Client
         return $this;
     }
 
-
-
-    /**
-     * Set telephone.
-     *
-     * @param \int|null $telephone
-     *
-     * @return Client
-     */
-    public function setTelephone(\int $telephone = null)
+    public function setTelephone(integer $telephone = null)
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
-    /**
-     * Get telephone.
-     *
-     * @return \int|null
-     */
     public function getTelephone()
     {
         return $this->telephone;

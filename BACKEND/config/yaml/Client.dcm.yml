@@ -59,7 +59,7 @@ Client:
         fixed: false
 
     telephone:
-      type: int
+      type: integer
       nullable: true
       length: 256
       options:

@@ -11,18 +11,16 @@ use Slim\Factory\AppFactory;
 
 $app = AppFactory::create();
 
-// POST /api/signin
-$app->post('/api/signin', function(Request $request, Response $response, $args){
+
+$app->post('/api/signup', function(Request $request, Response $response, $args){
     $body = $request->getParsedBody();
     $email = $body['email'] ?? "";
     $password = $body['password'] ?? "";
-    $login = $body['login'] ?? "";
-    $first_name = $body['first_name'] ?? "";
-    $last_name = $body['last_name'] ?? "";
+    $prenom = $body['prenom'] ?? "";
+    $nom = $body['nom'] ?? "";
 
-    $err = $email == "" || $password == "" || $login == "" || $last_name == "" || $first_name == "";
+    $err = $email == "" || $password == "" || $login == "" || $nom == "" || $prenom == "";
     if ($err) {
-        // Problème avec les champs
         $data["error"] = "Error with the accounts field";
         $response = $response->withStatus(403);
         $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
@@ -41,9 +39,8 @@ $app->post('/api/signin', function(Request $request, Response $response, $args){
 
     $newClient = new Client();
     $newClient->setEmail($email);
-    $newClient->setFirstName($first_name);
-    $newClient->setLastName($last_name);
-    $newClient->setLogin($login);
+    $newClient->setPrenom($prenom);
+    $newClient->setNom($nom);
     $newClient->setPassword(password_hash($password, PASSWORD_DEFAULT));
     Config::getInstance()->entityManager->persist($newClient);
     Config::getInstance()->entityManager->flush();
@@ -59,7 +56,7 @@ $app->post('/api/signin', function(Request $request, Response $response, $args){
 // POST /api/login
 $app->post('/api/login', function(Request $request, Response $response, $args) {
     $body = $request->getParsedBody();
-    $login = $body['login'] ?? "";
+    $login = $body['email'] ?? "";
     $password = $body['password'] ?? "";
 
     $err = $login == "" || $password == "";
@@ -72,7 +69,7 @@ $app->post('/api/login', function(Request $request, Response $response, $args) {
     }
 
     $clientRespository = Config::getInstance()->entityManager->getRepository('Client');
-    $client = $clientRespository->findOneBy(array("login" => $login));
+    $client = $clientRespository->findOneBy(array("email" => $email));
     if ($client == null || !password_verify($password, $client->getPassword())) {
         // Aucun client avec cet email / mdp
         $data["error"] = "Error with the email or password";
@@ -83,8 +80,8 @@ $app->post('/api/login', function(Request $request, Response $response, $args) {
 
     $data["email"] = $client->getEmail();
     $data["login"] = $client->getLogin();
-    $data["first_name"] = $client->getFirstName();
-    $data["last_name"] = $client->getLastName();
+    $data["prenom"] = $client->getPrenom();
+    $data["nom"] = $client->getNom();
     $data["expiration_time"] = time() + 600;
     $response = addHeaders($response);
     $response = createJWT($response, $login);
@@ -102,11 +99,8 @@ $app->get('/api/products', function(Request $request, Response $response, $args)
     foreach($products as $product) {
         $productInfo = array(
             "id" => $product->getId(),
-            "name" => $product->getName(),
-            "cores" => $product->getCores(),
-            "threads" => $product->getThreads(),
-            "brand" => $product->getBrand(),
-            "price" => $product->getPrice()
+            "libelle" => $product->getLibelle(),
+            "prix" => $product->getPrix()
         );
         array_push($data, $productInfo);
     }

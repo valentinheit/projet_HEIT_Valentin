@@ -75,13 +75,7 @@ class Product
 
 
 
-    /**
-     * Set prix.
-     *
-     * @param int|null $prix
-     *
-     * @return Product
-     */
+    
     public function setPrix($price = null)
     {
         $this->prix = $price;

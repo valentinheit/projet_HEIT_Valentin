@@ -19,8 +19,8 @@ CREATE TABLE Product(
     prix INTEGER
 );
 
-INSERT INTO Product(libelle, prix)
-VALUES ('T-shirt', 30),
-       ('Polo', 40),
-       ('Jean', 50),
-       ('Pull', 50)
+INSERT INTO Product(id, libelle, prix)
+VALUES (1, 'T-shirt', 30),
+       (2, 'Polo', 40),
+       (3, 'Jean', 50),
+       (4, 'Pull', 50)
