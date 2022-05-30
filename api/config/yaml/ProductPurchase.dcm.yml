@@ -1,0 +1,38 @@
+ProductPurchase:
+  type: entity
+  table: productpurchase
+  id:
+    idOrder:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: id_productpurchase
+      generator:
+        strategy: SEQUENCE
+  manyToOne:
+    order:
+      targetEntity: Purchase
+      inversedBy: productPurchases
+      joinColumn:
+        name: purchase_id
+        referencedColumnName: id_purchase
+    product:
+      targetEntity: Product
+      inversedBy: purchases
+      joinColumn:
+        name: product_id
+        referencedColumnName: id_product
+  fields:
+    quantity:
+      type: integer
+      nullable: false
+      options:
+        fixed: false
+    price:
+      type: float
+      nullable: false
+      options:
+        fixed: false
+  lifecycleCallbacks: {}

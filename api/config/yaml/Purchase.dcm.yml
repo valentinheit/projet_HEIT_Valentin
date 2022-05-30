@@ -1,0 +1,31 @@
+Purchase:
+  type: entity
+  table: purchase
+  id:
+    idOrder:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: id_purchase
+      generator:
+        strategy: SEQUENCE
+  manyToOne:
+    buyer:
+      targetEntity: Client
+      inversedBy: orders
+      joinColumn:
+        name: buyer_id
+        referencedColumnName: id_user
+  oneToMany:
+    productPurchases:
+      targetEntity: ProductPurchase
+      mappedBy: order
+  fields:
+    date:
+      type: date
+      nullable: false
+      options:
+        fixed: false
+  lifecycleCallbacks: {}

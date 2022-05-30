@@ -1,0 +1,35 @@
+Product:
+  type: entity
+  table: product
+  id:
+    idProduct:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: id_product
+      generator:
+        strategy: SEQUENCE
+  oneToMany:
+    purchases:
+      targetEntity: ProductPurchase
+      mappedBy: product
+  fields:
+    name:
+      type: string
+      nullable: false
+      length: 256
+      options:
+        fixed: false
+    description:
+      type: text
+      nullable: true
+      options:
+        fixed: false
+    price:
+      type: float
+      nullable: false
+      options:
+        fixed: false
+  lifecycleCallbacks: {}
