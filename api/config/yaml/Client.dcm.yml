@@ -1,0 +1,88 @@
+Client:
+  type: entity
+  table: client
+  id:
+    idUser:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: id_user
+      generator:
+        strategy: SEQUENCE
+  uniqueConstraints:
+    login_un:
+      columns: login
+  oneToMany:
+    orders:
+      targetEntity: Purchase
+      mappedBy: buyer
+  fields:
+    lastname:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    firstname:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    civility:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    street:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    zipCode:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    city:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    country:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    phone:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    email:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+    login:
+      type: string
+      nullable: false
+      length: 256
+      options:
+        fixed: false
+    password:
+      type: string
+      nullable: false
+      length: 256
+      options:
+        fixed: false
+  lifecycleCallbacks: {}
