@@ -25,37 +25,18 @@ class Product
     /**
      * @var string|null
      *
-     * @ORM\Column(name="name", type="string", length=32, nullable=true)
+     * @ORM\Column(name="libelle", type="string", length=100, nullable=true)
      */
-    private $name;
+    private $libelle;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="brand", type="string", length=32, nullable=true)
-     */
-    private $brand;
+
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="cores", type="integer", nullable=true)
+     * @ORM\Column(name="prix", type="integer", nullable=true)
      */
-    private $cores;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="threads", type="integer", nullable=true)
-     */
-    private $threads;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="price", type="integer", nullable=true)
-     */
-    private $price;
+    private $prix;
 
 
     /**
@@ -75,9 +56,9 @@ class Product
      *
      * @return Product
      */
-    public function setName($name = null)
+    public function setLibelle($name = null)
     {
-        $this->name = $name;
+        $this->libelle = $name;
 
         return $this;
     }
@@ -87,93 +68,23 @@ class Product
      *
      * @return string|null
      */
-    public function getName()
+    public function getLibelle()
     {
-        return $this->name;
+        return $this->libelle;
     }
 
+
+
     /**
-     * Set brand.
+     * Set prix.
      *
-     * @param string|null $brand
+     * @param int|null $prix
      *
      * @return Product
      */
-    public function setBrand($brand = null)
+    public function setPrix($price = null)
     {
-        $this->brand = $brand;
-
-        return $this;
-    }
-
-    /**
-     * Get brand.
-     *
-     * @return string|null
-     */
-    public function getBrand()
-    {
-        return $this->brand;
-    }
-
-    /**
-     * Set cores.
-     *
-     * @param int|null $cores
-     *
-     * @return Product
-     */
-    public function setCores($cores = null)
-    {
-        $this->cores = $cores;
-
-        return $this;
-    }
-
-    /**
-     * Get cores.
-     *
-     * @return int|null
-     */
-    public function getCores()
-    {
-        return $this->cores;
-    }
-
-    /**
-     * Set threads.
-     *
-     * @param int|null $threads
-     *
-     * @return Product
-     */
-    public function setThreads($threads = null)
-    {
-        $this->threads = $threads;
-
-        return $this;
-    }
-
-    /**
-     * Get threads.
-     *
-     * @return int|null
-     */
-    public function getThreads()
-    {
-        return $this->threads;
-    }
-
-    /**
-     * Set price.
-     *
-     * @param int|null $price
-     *
-     * @return Product
-     */
-    public function setPrice($price = null)
-    {
-        $this->price = $price;
+        $this->prix = $price;
 
         return $this;
     }
@@ -183,8 +94,8 @@ class Product
      *
      * @return int|null
      */
-    public function getPrice()
+    public function getPrix()
     {
-        return $this->price;
+        return $this->prix;
     }
 }

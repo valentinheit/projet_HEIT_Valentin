@@ -25,23 +25,23 @@ class Client
     /**
      * @var string|null
      *
-     * @ORM\Column(name="last_name", type="string", length=48, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=48, nullable=true)
      */
-    private $lastName;
+    private $nom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="first_name", type="string", length=48, nullable=true)
+     * @ORM\Column(name="prenom", type="string", length=48, nullable=true)
      */
-    private $firstName;
+    private $prenom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="login", type="string", length=48, nullable=true)
+     * @ORM\Column(name="civilite", type="string", length=5, nullable=true)
      */
-    private $login;
+    private $civilite;
 
     /**
      * @var string|null
@@ -56,6 +56,41 @@ class Client
      * @ORM\Column(name="password", type="string", length=256, nullable=true)
      */
     private $password;
+
+        /**
+     * @var string|null
+     *
+     * @ORM\Column(name="adresse", type="string", length=256, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="codePostal", type="string", length=256, nullable=true)
+     */
+    private $codePostal;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="telephone", type="int", nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="pays", type="string", length=256, nullable=true)
+     */
+    private $pays;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="ville", type="string", length=256, nullable=true)
+     */
+    private $ville;
 
 
     /**
@@ -75,83 +110,41 @@ class Client
      *
      * @return Client
      */
-    public function setLastName($lastName = null)
+    public function setNom($nom = null)
     {
-        $this->lastName = $lastName;
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    
+    public function setPrenom($prenom = null)
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }
 
     /**
-     * Get lastName.
+     * Get prenom.
      *
      * @return string|null
      */
-    public function getLastName()
+    public function getPrenom()
     {
-        return $this->lastName;
+        return $this->prenom;
     }
 
-    /**
-     * Set firstName.
-     *
-     * @param string|null $firstName
-     *
-     * @return Client
-     */
-    public function setFirstName($firstName = null)
-    {
-        $this->firstName = $firstName;
 
-        return $this;
-    }
-
-    /**
-     * Get firstName.
-     *
-     * @return string|null
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set login.
-     *
-     * @param string|null $login
-     *
-     * @return Client
-     */
-    public function setLogin($login = null)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    /**
-     * Get login.
-     *
-     * @return string|null
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
-     * Set email.
-     *
-     * @param string|null $email
-     *
-     * @return Client
-     */
     public function setEmail($email = null)
     {
         $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -164,13 +157,7 @@ class Client
         return $this->email;
     }
 
-    /**
-     * Set password.
-     *
-     * @param string|null $password
-     *
-     * @return Client
-     */
+    
     public function setPassword($password = null)
     {
         $this->password = $password;
@@ -186,5 +173,92 @@ class Client
     public function getPassword()
     {
         return $this->password;
+    }
+
+
+    public function getCivilite()
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite($civilite = null)
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    public function setVille($ville = null)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
+    public function setCodePostal($codePostal = null)
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse($adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    public function setPays($pays = null)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Set telephone.
+     *
+     * @param \int|null $telephone
+     *
+     * @return Client
+     */
+    public function setTelephone(\int $telephone = null)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get telephone.
+     *
+     * @return \int|null
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
     }
 }

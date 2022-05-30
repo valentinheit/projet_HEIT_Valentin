@@ -1,46 +1,81 @@
 Client:
-    type: entity
-    table: client
+  type: entity
+  table: client
+  id:
     id:
-        id:
-            type: integer
-            nullable: false
-            options:
-                unsigned: false
-            id: true
-            generator:
-                strategy: SEQUENCE
-    fields:
-        lastName:
-            type: string
-            nullable: true
-            length: 48
-            options:
-                fixed: false
-            column: last_name
-        firstName:
-            type: string
-            nullable: true
-            length: 48
-            options:
-                fixed: false
-            column: first_name
-        login:
-            type: string
-            nullable: true
-            length: 48
-            options:
-                fixed: false
-        email:
-            type: string
-            nullable: true
-            length: 100
-            options:
-                fixed: false
-        password:
-            type: string
-            nullable: true
-            length: 256
-            options:
-                fixed: false
-    lifecycleCallbacks: {  }
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      generator:
+        strategy: SEQUENCE
+  fields:
+    nom:
+      type: string
+      nullable: true
+      length: 48
+      options:
+        fixed: false
+      column: last_name
+    prenom:
+      type: string
+      nullable: true
+      length: 48
+      options:
+        fixed: false
+      column: first_name
+    civilite:
+      type: string
+      nullable: true
+      length: 5
+      options:
+        fixed: false
+    email:
+      type: string
+      nullable: true
+      length: 100
+      options:
+        fixed: false
+    password:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+
+    adresse:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+
+    codePostal:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+
+    telephone:
+      type: int
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+
+    pays:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+
+    ville:
+      type: string
+      nullable: true
+      length: 256
+      options:
+        fixed: false
+  lifecycleCallbacks: {}

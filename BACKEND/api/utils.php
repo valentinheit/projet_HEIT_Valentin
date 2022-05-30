@@ -3,7 +3,7 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Firebase\JWT\JWT;
 
-const JWT_SECRET = "azerty123456789";
+const JWT_SECRET = "V4LENTIN";
 
 function createJWT(Response $response, String $login) : Response {
     $issuedAt = time();
