@@ -1,0 +1,41 @@
+Product:
+    type: entity
+    table: product
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 32
+            options:
+                fixed: false
+        brand:
+            type: string
+            nullable: true
+            length: 32
+            options:
+                fixed: false
+        cores:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        threads:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        price:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

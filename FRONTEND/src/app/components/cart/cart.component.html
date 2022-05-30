@@ -1,0 +1,16 @@
+<div class="container" style="margin: 100px; color: white">
+  <h1>Panier</h1>
+  <div *ngIf="products$ | async as products">
+    <ul>
+      <li *ngFor="let product of products">
+        <p>{{ product.libelle }}</p>
+      </li>
+    </ul>
+    <div *ngIf="products.length == 0">
+      <p>Il n'y a pas d'article dans votre panier</p>
+    </div>
+    <div *ngIf="products.length > 0">
+      <button (click)="removeAll()">Supprimer tous les articles</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.addresses {
+  margin: 100px;
+  color: var(--main);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--primary);
+  padding: 50px;
+  border-radius: 5px;
+}
+
+.addresses input {
+  background-color: white;
+}
+
+.addresses button {
+  padding: 10px;
+  margin-top: 50px;
+}
+
+.addresses-component {
+  display: flex;
+}

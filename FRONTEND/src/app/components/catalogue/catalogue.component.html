@@ -1,0 +1,51 @@
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 150px;
+  "
+>
+  <h1>Catalogue</h1>
+  <app-searcher
+    (changes)="getProducts($event)"
+    (filterChanged)="getFilterItem($event)"
+  ></app-searcher>
+  <table style="border: 1px solid">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Libellé</th>
+        <th>Prix</th>
+        <th>Ajouter au panier</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td
+          [ngClass]="{
+            'filtered-column': filterItem == 'libelle'
+          }"
+        >
+          {{ product.libelle }}
+        </td>
+        <td
+          [ngClass]="{
+            'filtered-column': filterItem == 'prix'
+          }"
+        >
+          {{ product.prix }}€
+        </td>
+        <td>
+          <button class="add" (click)="addToCart(product)">+</button>
+          <button class="delete" (click)="deleteFromCart(product)">-</button>
+          <button [routerLink]="['/product/details', product.id]">
+            Details
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

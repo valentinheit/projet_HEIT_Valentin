@@ -1,0 +1,6 @@
+<div class="product-details">
+  <h1>Détails de {{ product.libelle }}</h1>
+  <p>Prix : {{ product.prix }}€</p>
+  <p>Référence : {{ product.id }}</p>
+  <button class="add" (click)="addToCart(product)">Ajouter au panier</button>
+</div>

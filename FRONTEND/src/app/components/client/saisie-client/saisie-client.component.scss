@@ -1,0 +1,16 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.7rem;
+}
+
+.connexion {
+  input {
+    background-color: white;
+  }
+}

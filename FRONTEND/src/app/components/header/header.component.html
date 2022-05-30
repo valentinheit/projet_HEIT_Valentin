@@ -1,0 +1,16 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <span style="padding-left: 20px">TP N°4 - NFE114</span>
+  <div class="spacer"></div>
+  <div class="links">
+    <a class="link" routerLink="catalogue">Catalogue</a>
+    <a class="link" routerLink="saisieClient">Saisie client</a>
+    <a class="link" routerLink="addresses">Mes adresses</a>
+    <div style="display: flex">
+      <a class="link" routerLink="cart"
+        >Panier <span class="cart">{{ productNb$ | async }}</span></a
+      >
+    </div>
+    <a class="link" routerLink="/">Accueil</a>
+  </div>
+</div>
