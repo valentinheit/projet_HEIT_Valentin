@@ -5,7 +5,7 @@ require_once "vendor/autoload.php";
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
-date_default_timezone_set('America/Lima');
+date_default_timezone_set('Europe/Paris');
 const JWT_SECRET = "azerty123456789";
 
 class Config {
@@ -35,7 +35,7 @@ class Config {
             "algorithm" => ["HS256"],
             "secret" => JWT_SECRET,
             "path" => ["/api"],
-            "ignore" => ["/api/login", "/api/signin"],
+            "ignore" => ["/api/login", "/api/signup"],
             "error" => function ($response, $arguments) {
                 $data["status"] = "error";
                 $data["message"] = $arguments["message"];

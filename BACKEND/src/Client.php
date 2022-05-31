@@ -236,7 +236,7 @@ class Client
         return $this;
     }
 
-    public function setTelephone(integer $telephone = null)
+    public function setTelephone(int $telephone = null)
     {
         $this->telephone = $telephone;
 

@@ -19,7 +19,7 @@ $app->post('/api/signup', function(Request $request, Response $response, $args){
     $prenom = $body['prenom'] ?? "";
     $nom = $body['nom'] ?? "";
 
-    $err = $email == "" || $password == "" || $login == "" || $nom == "" || $prenom == "";
+    $err = $email == "" || $password == "" || $nom == "" || $prenom == "";
     if ($err) {
         $data["error"] = "Error with the accounts field";
         $response = $response->withStatus(403);
@@ -53,25 +53,24 @@ $app->post('/api/signup', function(Request $request, Response $response, $args){
     return $response;
 });
 
-// POST /api/login
+
 $app->post('/api/login', function(Request $request, Response $response, $args) {
     $body = $request->getParsedBody();
-    $login = $body['email'] ?? "";
+    $email = $body['email'] ?? "";
     $password = $body['password'] ?? "";
 
-    $err = $login == "" || $password == "";
+    $err = $email == "" || $password == "";
     if ($err) {
-        // Problème avec les champs
+
         $data["error"] = "Error with the accounts field";
         $response = $response->withStatus(403);
         $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         return $response;
     }
 
-    $clientRespository = Config::getInstance()->entityManager->getRepository('Client');
-    $client = $clientRespository->findOneBy(array("email" => $email));
+    $clientRepository = Config::getInstance()->entityManager->getRepository('Client');
+    $client = $clientRepository->findOneBy(array("email" => $email));
     if ($client == null || !password_verify($password, $client->getPassword())) {
-        // Aucun client avec cet email / mdp
         $data["error"] = "Error with the email or password";
         $response = $response->withStatus(403);
         $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
@@ -79,18 +78,15 @@ $app->post('/api/login', function(Request $request, Response $response, $args) {
     }
 
     $data["email"] = $client->getEmail();
-    $data["login"] = $client->getLogin();
     $data["prenom"] = $client->getPrenom();
     $data["nom"] = $client->getNom();
     $data["expiration_time"] = time() + 600;
     $response = addHeaders($response);
-    $response = createJWT($response, $login);
     $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
-
+    $response = createJWT($response, $email);
     return $response;
 });
 
-// GET /api/products
 $app->get('/api/products', function(Request $request, Response $response, $args) {
     $productRepository = Config::getInstance()->entityManager->getRepository('Product');
     $products = $productRepository->findAll();

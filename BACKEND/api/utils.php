@@ -14,6 +14,7 @@ function createJWT(Response $response, String $login) : Response {
         'exp' => $expirationTime
     );
 
+
     $token_jwt = JWT::encode($payload, JWT_SECRET, "HS256");
     $response = $response->withHeader("Authorization", "Bearer {$token_jwt}");
     return $response;
