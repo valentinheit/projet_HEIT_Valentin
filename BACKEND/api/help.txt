@@ -1,3 +1,0 @@
-POST /api/login            PARAMS (email, password)                               NO NEED JWT
-POST /api/signin           PARAMS (email, password, first_name, last_name, login) NO NEED JWT
-GET  /api/products                                                                NEED JWT

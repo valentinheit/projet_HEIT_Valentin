@@ -25,11 +25,9 @@ class Product
     /**
      * @var string|null
      *
-     * @ORM\Column(name="libelle", type="string", length=100, nullable=true)
+     * @ORM\Column(name="libelle", type="string", length=32, nullable=true)
      */
     private $libelle;
-
-
 
     /**
      * @var int|null
@@ -50,21 +48,21 @@ class Product
     }
 
     /**
-     * Set name.
+     * Set libelle.
      *
-     * @param string|null $name
+     * @param string|null $libelle
      *
      * @return Product
      */
-    public function setLibelle($name = null)
+    public function setLibelle($libelle = null)
     {
-        $this->libelle = $name;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
     /**
-     * Get name.
+     * Get libelle.
      *
      * @return string|null
      */
@@ -73,18 +71,22 @@ class Product
         return $this->libelle;
     }
 
-
-
-    
-    public function setPrix($price = null)
+    /**
+     * Set prix.
+     *
+     * @param int|null $prix
+     *
+     * @return Product
+     */
+    public function setPrix($prix = null)
     {
-        $this->prix = $price;
+        $this->prix = $prix;
 
         return $this;
     }
 
     /**
-     * Get price.
+     * Get prix.
      *
      * @return int|null
      */

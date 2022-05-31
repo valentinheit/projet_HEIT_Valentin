@@ -1,3 +1,6 @@
+begin;
+set transaction read write;
+
 DROP TABLE IF EXISTS Client;
 DROP TABLE IF EXISTS Product;
 
@@ -23,4 +26,6 @@ INSERT INTO Product(id, libelle, prix)
 VALUES (1, 'T-shirt', 30),
        (2, 'Polo', 40),
        (3, 'Jean', 50),
-       (4, 'Pull', 50)
+       (4, 'Pull', 50);
+
+COMMIT;

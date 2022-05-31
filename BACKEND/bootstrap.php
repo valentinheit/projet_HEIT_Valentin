@@ -1,17 +1,17 @@
 <?php
 
 require_once "vendor/autoload.php";
+require_once "./api/utils.php";
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 date_default_timezone_set('Europe/Paris');
-const JWT_SECRET = "azerty123456789";
 
 class Config {
     private static ?Config $instance = null;
     public ?EntityManager $entityManager = null;
-    public Mixed $options = null;
+    public $options = null;
 
     private function __construct()
     {

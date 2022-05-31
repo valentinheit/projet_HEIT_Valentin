@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Client
  *
- * @ORM\Table(name="client")
+ * @ORM\Table(name="client", uniqueConstraints={@ORM\UniqueConstraint(name="client_email_key", columns={"email"})})
  * @ORM\Entity
  */
 class Client
@@ -39,13 +39,6 @@ class Client
     /**
      * @var string|null
      *
-     * @ORM\Column(name="civilite", type="string", length=5, nullable=true)
-     */
-    private $civilite;
-
-    /**
-     * @var string|null
-     *
      * @ORM\Column(name="email", type="string", length=100, nullable=true)
      */
     private $email;
@@ -57,19 +50,19 @@ class Client
      */
     private $password;
 
-        /**
+    /**
      * @var string|null
      *
-     * @ORM\Column(name="adresse", type="string", length=256, nullable=true)
+     * @ORM\Column(name="ville", type="string", length=200, nullable=true)
      */
-    private $adresse;
+    private $ville;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="codePostal", type="string", length=256, nullable=true)
+     * @ORM\Column(name="codepostal", type="string", length=100, nullable=true)
      */
-    private $codePostal;
+    private $codepostal;
 
     /**
      * @var int|null
@@ -77,20 +70,6 @@ class Client
      * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     private $telephone;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="pays", type="string", length=256, nullable=true)
-     */
-    private $pays;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="ville", type="string", length=256, nullable=true)
-     */
-    private $ville;
 
 
     /**
@@ -104,9 +83,9 @@ class Client
     }
 
     /**
-     * Set lastName.
+     * Set nom.
      *
-     * @param string|null $lastName
+     * @param string|null $nom
      *
      * @return Client
      */
@@ -117,13 +96,23 @@ class Client
         return $this;
     }
 
-
+    /**
+     * Get nom.
+     *
+     * @return string|null
+     */
     public function getNom()
     {
         return $this->nom;
     }
 
-    
+    /**
+     * Set prenom.
+     *
+     * @param string|null $prenom
+     *
+     * @return Client
+     */
     public function setPrenom($prenom = null)
     {
         $this->prenom = $prenom;
@@ -141,10 +130,18 @@ class Client
         return $this->prenom;
     }
 
-
+    /**
+     * Set email.
+     *
+     * @param string|null $email
+     *
+     * @return Client
+     */
     public function setEmail($email = null)
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
@@ -157,7 +154,13 @@ class Client
         return $this->email;
     }
 
-    
+    /**
+     * Set password.
+     *
+     * @param string|null $password
+     *
+     * @return Client
+     */
     public function setPassword($password = null)
     {
         $this->password = $password;
@@ -175,24 +178,13 @@ class Client
         return $this->password;
     }
 
-
-    public function getCivilite()
-    {
-        return $this->civilite;
-    }
-
-    public function setCivilite($civilite = null)
-    {
-        $this->civilite = $civilite;
-
-        return $this;
-    }
-
-    public function getVille()
-    {
-        return $this->ville;
-    }
-
+    /**
+     * Set ville.
+     *
+     * @param string|null $ville
+     *
+     * @return Client
+     */
     public function setVille($ville = null)
     {
         $this->ville = $ville;
@@ -200,49 +192,59 @@ class Client
         return $this;
     }
 
-    public function getCodePostal()
+    /**
+     * Get ville.
+     *
+     * @return string|null
+     */
+    public function getVille()
     {
-        return $this->codePostal;
+        return $this->ville;
     }
 
-    public function setCodePostal($codePostal = null)
+    /**
+     * Set codepostal.
+     *
+     * @param string|null $codepostal
+     *
+     * @return Client
+     */
+    public function setCodepostal($codepostal = null)
     {
-        $this->codePostal = $codePostal;
+        $this->codepostal = $codepostal;
 
         return $this;
     }
 
-    public function getAdresse()
+    /**
+     * Get codepostal.
+     *
+     * @return string|null
+     */
+    public function getCodepostal()
     {
-        return $this->adresse;
+        return $this->codepostal;
     }
 
-    public function setAdresse($adresse = null)
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    public function getPays()
-    {
-        return $this->pays;
-    }
-
-    public function setPays($pays = null)
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
-    public function setTelephone(int $telephone = null)
+    /**
+     * Set telephone.
+     *
+     * @param int|null $telephone
+     *
+     * @return Client
+     */
+    public function setTelephone($telephone = null)
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
+    /**
+     * Get telephone.
+     *
+     * @return int|null
+     */
     public function getTelephone()
     {
         return $this->telephone;
