@@ -64,7 +64,6 @@ $app->post('/api/login', function(Request $request, Response $response, $args) {
 
     $error = $email == "" || $password == "";
     if ($error) {
-        // Problème avec les champs
         $data["error"] = "Error with the accounts field";
         $response = $response->withStatus(403);
         $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
