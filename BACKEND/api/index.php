@@ -64,7 +64,6 @@ $app->post('/api/login', function(Request $request, Response $response, $args) {
 
     $error = $email == "" || $password == "";
     if ($error) {
-        // Problème avec les champs
         $data["error"] = "Error with the accounts field";
         $response = $response->withStatus(403);
         $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
@@ -86,7 +85,7 @@ $app->post('/api/login', function(Request $request, Response $response, $args) {
     $data["nom"] = $client->getNom();
     $data["expiration_time"] = time() + JWT_EXPIRATION_TIME;
     $response = addHeaders($response);
-    $response = createJWT($response, $username);
+    $response = createJWT($response, $email);
     $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
     return $response;

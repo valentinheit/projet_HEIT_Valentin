@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import {
   AddProductToCart,
@@ -8,6 +8,7 @@ import {
 } from 'shared/actions/cart.action';
 import { Product } from 'shared/models/product';
 import { CartState } from 'shared/states/cart-state';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-catalogue',
@@ -16,11 +17,18 @@ import { CartState } from 'shared/states/cart-state';
 })
 export class CatalogueComponent {
   products: Product[] = [];
+  subscription!: Subscription;
   filterItem: string = '';
   @Select(CartState.getProductsFromCart) products$!: Observable<Product[]>;
-  ngOnInit(): void {}
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private productService: ProductsService) {}
+
+  ngOnInit(): void {
+    this.products = this.productService.getProducts();
+    this.subscription = this.productService
+      .getProductsObs()
+      .subscribe((data) => (this.products = data));
+  }
 
   getProducts(event: Product[]): void {
     this.products = event;
@@ -28,6 +36,10 @@ export class CatalogueComponent {
 
   getFilterItem(event: string): void {
     this.filterItem = event;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   addToCart(product: Product) {

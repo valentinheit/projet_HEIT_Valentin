@@ -1,0 +1,36 @@
+<div
+  class="form-group connexion"
+  style="
+    background-color: var(--primary);
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 30px;
+  "
+>
+  <h1>Connexion</h1>
+  <form [formGroup]="form" class="form" style="grid-column: 1">
+    <label for="email">Email *</label>
+    <input formControlName="email" type="email" name="email" required email />
+
+    <label for="password">Mot de passe</label
+    ><input
+      formControlName="password"
+      type="password"
+      name="password"
+      required
+    />
+    <button
+      style="margin-top: 10px"
+      (click)="onSubmit()"
+      [ngClass]="{
+        'btn-primary': form.valid
+      }"
+    >
+      Se connecter
+    </button>
+  </form>
+  <div style="background-color: red; padding: 10px" *ngIf="errorMsg">
+    {{ errorMsg }}
+  </div>
+</div>

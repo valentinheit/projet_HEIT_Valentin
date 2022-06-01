@@ -1,16 +1,27 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <span style="padding-left: 20px">TP N°4 - NFE114</span>
+  <span style="padding-left: 20px">Projet - NFE114</span>
   <div class="spacer"></div>
   <div class="links">
-    <a class="link" routerLink="catalogue">Catalogue</a>
-    <a class="link" routerLink="saisieClient">Saisie client</a>
-    <a class="link" routerLink="addresses">Mes adresses</a>
+    <a class="link" *ngIf="currentUser" routerLink="catalogue">Catalogue</a>
+    <a *ngIf="!currentUser" class="link" routerLink="client/signup"
+      >Inscription</a
+    >
+    <a *ngIf="!currentUser" class="link" routerLink="client/login">Connexion</a>
+    <a class="link" *ngIf="currentUser" routerLink="addresses">Mes adresses</a>
     <div style="display: flex">
-      <a class="link" routerLink="cart"
+      <a class="link" *ngIf="currentUser" routerLink="cart"
         >Panier <span class="cart">{{ productNb$ | async }}</span></a
       >
     </div>
     <a class="link" routerLink="/">Accueil</a>
+    <button
+      *ngIf="currentUser"
+      class="link"
+      style="color: black"
+      (click)="logout()"
+    >
+      Déconnexion ({{ currentUser.prenom }})
+    </button>
   </div>
 </div>

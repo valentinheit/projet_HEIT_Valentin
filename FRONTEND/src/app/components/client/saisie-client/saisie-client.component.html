@@ -1,6 +1,6 @@
 <div class="form-container">
   <form [formGroup]="form" class="form" style="grid-column: 1">
-    <h1>Formulaire de saisie d'informations client</h1>
+    <h1>Inscription</h1>
     <i>Les champs avec un (*) sont requis.</i>
 
     <div class="form-group">
@@ -66,6 +66,18 @@
       </small>
       <label for="pays">Pays</label>
       <input formControlName="pays" name="pays" />
+    </div>
+
+    <div
+      class="form-group connexion"
+      style="
+        background-color: var(--primary);
+        color: black;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+      "
+    >
       <label for="email">Email *</label>
       <input
         formControlName="email"
@@ -80,26 +92,6 @@
       <small *ngIf="email.invalid && email.touched" class="error-message">
         Merci de renseigner une adresse mail valide.
       </small>
-    </div>
-
-    <div
-      class="form-group connexion"
-      style="
-        background-color: var(--primary);
-        color: black;
-        padding: 10px;
-        border-radius: 5px;
-        margin-top: 10px;
-      "
-    >
-      <h2>Connexion</h2>
-      <label for="login">Login *</label
-      ><input
-        formControlName="login"
-        [ngClass]="{ 'input-wrong': !login }"
-        name="login"
-        required
-      />
       <label for="password">Mot de passe *</label
       ><input
         formControlName="password"
@@ -135,6 +127,9 @@
     >
       Envoyer
     </button>
+    <div style="background-color: red; padding: 10px" *ngIf="errorMsg">
+      {{ errorMsg }}
+    </div>
   </form>
   <div>
     <app-recapitulatif
@@ -148,7 +143,6 @@
       [tel]="this.form.get('tel')?.value"
       [email]="this.form.get('email')?.value"
       [pays]="this.form.get('pays')?.value"
-      [login]="this.form.get('login')?.value"
       [password]="this.form.get('password')?.value"
     ></app-recapitulatif>
   </div>

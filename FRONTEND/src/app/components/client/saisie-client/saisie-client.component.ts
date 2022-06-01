@@ -7,6 +7,8 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-saisie-client',
@@ -29,7 +31,6 @@ export class SaisieClientComponent implements OnInit {
   ]);
   email = new FormControl('', [Validators.required, Validators.email]);
   civilite = new FormControl('');
-  login = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
   confirmPassword = new FormControl('', [
     Validators.required,
@@ -37,8 +38,13 @@ export class SaisieClientComponent implements OnInit {
   ]);
 
   pays = new FormControl('');
+  errorMsg!: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -50,7 +56,6 @@ export class SaisieClientComponent implements OnInit {
       tel: this.tel,
       email: this.email,
       civilite: this.civilite,
-      login: this.login,
       password: this.password,
       confirmPassword: this.confirmPassword,
       pays: this.pays,
@@ -66,11 +71,29 @@ export class SaisieClientComponent implements OnInit {
       this.form.get('nom') &&
       this.form.get('prenom') &&
       this.form.get('email') &&
-      this.form.get('login') &&
       this.form.get('password') &&
       this.form.get('confirmPassword')
     ) {
       this.submitted = true;
+      this.authenticationService
+        .postSignup(
+          this.email?.value,
+          this.password?.value,
+          this.prenom?.value,
+          this.nom?.value
+        )
+        .subscribe(
+          (data) => {
+            this.router.navigate(['client/login']);
+          },
+          (errorResponse) => {
+            if (errorResponse['status'] == 404) {
+              this.errorMsg = "Oulala, il n'y a pas cette URL";
+            } else {
+              this.errorMsg = errorResponse['error']['error'];
+            }
+          }
+        );
     }
   }
 

@@ -11,7 +11,7 @@ import { RecapitulatifComponent } from './components/client/recapitulatif/recapi
 import { PhoneFormatPipe } from './phone-format.pipe';
 import { ProductsService } from './product.service';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearcherComponent } from './components/searcher/searcher.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,11 +23,15 @@ import { CartState } from 'shared/states/cart-state';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { AddressState } from 'shared/states/address-state';
+import { SigninComponent } from './components/client/signin/signin.component';
+import { ApiHttpInterceptor } from './interceptors/api-http.interceptor';
+
 const appRoutes: Routes = [
   { path: 'product/details/:id', component: ProductDetailsComponent },
   { path: '', component: AppComponent },
   { path: 'catalogue', component: CatalogueComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'signin', component: SigninComponent },
   {
     path: 'client',
     loadChildren: () =>
@@ -61,7 +65,13 @@ const appRoutes: Routes = [
     ClientModule,
   ],
   exports: [RouterModule],
-  providers: [ProductsService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiHttpInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

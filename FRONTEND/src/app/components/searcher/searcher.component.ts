@@ -1,6 +1,6 @@
 import { EventEmitter, Output, Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../product.service';
-import { Product } from '../../product';
+import { ProductsService } from 'src/app/services/products.service';
+import { Product } from 'shared/models/product';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 
@@ -30,7 +30,7 @@ export class SearcherComponent implements OnInit {
 
   filter() {
     if (this.search !== '') {
-      return this.productService.getCatalogue().subscribe((products) => {
+      return this.productService.getProductsObs().subscribe((products) => {
         this.products = products.filter((p) =>
           this.filterItem === 'libelle'
             ? p.libelle.toLowerCase().includes(this.search.toLowerCase())
@@ -39,7 +39,7 @@ export class SearcherComponent implements OnInit {
         this.update();
       });
     } else {
-      return this.productService.getCatalogue().subscribe((products) => {
+      return this.productService.getProductsObs().subscribe((products) => {
         this.products = products;
         this.update();
       });
