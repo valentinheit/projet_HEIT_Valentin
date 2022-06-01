@@ -31,7 +31,6 @@ export class SaisieClientComponent implements OnInit {
   ]);
   email = new FormControl('', [Validators.required, Validators.email]);
   civilite = new FormControl('');
-  login = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
   confirmPassword = new FormControl('', [
     Validators.required,
@@ -57,7 +56,6 @@ export class SaisieClientComponent implements OnInit {
       tel: this.tel,
       email: this.email,
       civilite: this.civilite,
-      login: this.login,
       password: this.password,
       confirmPassword: this.confirmPassword,
       pays: this.pays,
@@ -73,7 +71,6 @@ export class SaisieClientComponent implements OnInit {
       this.form.get('nom') &&
       this.form.get('prenom') &&
       this.form.get('email') &&
-      this.form.get('login') &&
       this.form.get('password') &&
       this.form.get('confirmPassword')
     ) {

@@ -9,28 +9,27 @@
   "
 >
   <h1>Connexion</h1>
-  <label for="email">Email *</label>
-  <input
-    formControlName="email"
-    type="email"
-    [ngClass]="{
-      'input-wrong': email.invalid && email.touched
-    }"
-    name="email"
-    required
-    email
-  />
+  <form [formGroup]="form" class="form" style="grid-column: 1">
+    <label for="email">Email *</label>
+    <input formControlName="email" type="email" name="email" required email />
 
-  <label for="password">Mot de passe</label
-  ><input formControlName="password" type="password" name="password" required />
-  <button
-    style="margin-top: 10px"
-    [ngClass]="{
-      'btn-primary': form.valid
-    }"
-  >
-    Se connecter
-  </button>
+    <label for="password">Mot de passe</label
+    ><input
+      formControlName="password"
+      type="password"
+      name="password"
+      required
+    />
+    <button
+      style="margin-top: 10px"
+      (click)="onSubmit()"
+      [ngClass]="{
+        'btn-primary': form.valid
+      }"
+    >
+      Se connecter
+    </button>
+  </form>
   <div style="background-color: red; padding: 10px" *ngIf="errorMsg">
     {{ errorMsg }}
   </div>

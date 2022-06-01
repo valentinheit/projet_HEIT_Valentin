@@ -127,6 +127,9 @@
     >
       Envoyer
     </button>
+    <div style="background-color: red; padding: 10px" *ngIf="errorMsg">
+      {{ errorMsg }}
+    </div>
   </form>
   <div>
     <app-recapitulatif
@@ -142,8 +145,5 @@
       [pays]="this.form.get('pays')?.value"
       [password]="this.form.get('password')?.value"
     ></app-recapitulatif>
-    <div style="background-color: red; padding: 10px" *ngIf="errorMsg">
-      {{ errorMsg }}
-    </div>
   </div>
 </div>

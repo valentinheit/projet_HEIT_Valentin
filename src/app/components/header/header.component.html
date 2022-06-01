@@ -4,10 +4,10 @@
   <div class="spacer"></div>
   <div class="links">
     <a class="link" routerLink="catalogue">Catalogue</a>
-    <a *ngIf="!currentUser" class="link" routerLink="saisieClient"
+    <a *ngIf="!currentUser" class="link" routerLink="client/signup"
       >Inscription</a
     >
-    <a *ngIf="!currentUser" class="link" routerLink="signin">Connexion</a>
+    <a *ngIf="!currentUser" class="link" routerLink="client/login">Connexion</a>
     <button *ngIf="currentUser" class="link" (click)="logout()">
       Déconnexion
     </button>

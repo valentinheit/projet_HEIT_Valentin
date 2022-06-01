@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SaisieClientComponent } from './saisie-client/saisie-client.component';
 import { AddresseComponent } from './addresse/addresse.component';
 import { SigninComponent } from './signin/signin.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'signup', component: SaisieClientComponent },
@@ -12,6 +13,11 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [SigninComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class ClientModule {}

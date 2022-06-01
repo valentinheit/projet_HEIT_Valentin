@@ -1,12 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgForm, ValidatorFn, FormBuilder } from '@angular/forms';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  AbstractControl,
-  ValidationErrors,
-} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -16,27 +9,24 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
-  form: FormGroup = new FormGroup({});
-  valid: boolean = true;
-  submitted: boolean = false;
+  form!: FormGroup;
   errorMsg!: string;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
+
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      email: this.email,
-      password: this.password,
-    });
+    this.initializeForm();
   }
 
-  isValid() {
-    return this.isValid;
+  initializeForm(): void {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
   }
 
   onSubmit(): void {
@@ -49,7 +39,7 @@ export class SigninComponent implements OnInit {
           },
           (errorResponse) => {
             if (errorResponse['status'] == 404) {
-              this.errorMsg = "Oulala, il n'y a pas cette URL";
+              this.errorMsg = "Olala il n'y a pas d'URL";
             } else {
               this.errorMsg = errorResponse['error']['error'];
             }
@@ -61,5 +51,12 @@ export class SigninComponent implements OnInit {
         control?.markAsTouched({ onlySelf: true });
       });
     }
+  }
+
+  get email() {
+    return this.form.get('email');
+  }
+  get password() {
+    return this.form.get('password');
   }
 }
