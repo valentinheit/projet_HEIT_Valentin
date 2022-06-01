@@ -8,10 +8,7 @@
   "
 >
   <h1>Catalogue</h1>
-  <app-searcher
-    (changes)="getProducts($event)"
-    (filterChanged)="getFilterItem($event)"
-  ></app-searcher>
+  <app-searcher (filterChanged)="getFilterItem($event)"></app-searcher>
   <table style="border: 1px solid">
     <thead>
       <tr>

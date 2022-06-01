@@ -3,14 +3,19 @@
   <span style="padding-left: 20px">Projet - NFE114</span>
   <div class="spacer"></div>
   <div class="links">
+    <button
+      *ngIf="currentUser"
+      class="link"
+      style="color: black"
+      (click)="logout()"
+    >
+      Déconnexion
+    </button>
     <a class="link" routerLink="catalogue">Catalogue</a>
     <a *ngIf="!currentUser" class="link" routerLink="client/signup"
       >Inscription</a
     >
     <a *ngIf="!currentUser" class="link" routerLink="client/login">Connexion</a>
-    <button *ngIf="currentUser" class="link" (click)="logout()">
-      Déconnexion
-    </button>
     <a class="link" routerLink="addresses">Mes adresses</a>
     <div style="display: flex">
       <a class="link" routerLink="cart"
